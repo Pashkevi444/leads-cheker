@@ -1,6 +1,4 @@
 <?php
-
-
 \Bitrix\Main\Loader::registerAutoLoadClasses(
     "paul.leadschecker",
     array(
