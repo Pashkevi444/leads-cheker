@@ -75,7 +75,7 @@ final class ModuleSettings
                 [
                     'IDENTIFIER_USER_PROPERTY_LEAD_CODE',
                     'Символьный код пользовательского свойства Идентификатор',
-                    'UF_IDENTIFIER',
+                    '',
                     ['text']
                 ],
             ],
