@@ -2,7 +2,7 @@
 
 namespace Paul;
 
-class OptionsData
+final class OptionsData
 {
     // Singleton instance of the class
     public static ?OptionsData $instance = null;

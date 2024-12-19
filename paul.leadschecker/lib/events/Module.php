@@ -6,7 +6,7 @@ namespace Paul\Events;
 use Bitrix\Main\LoaderException;
 use Paul\OptionsData;
 
-class Module
+final class Module
 {
 
 
