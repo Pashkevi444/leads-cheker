@@ -47,12 +47,12 @@ final class Module
         $identifierValue = trim($arFields[$optionsData->identifierUserPropertyLeadCode]);
 
         if (!$identifierValue) {
-            $arFields['RESULT_MESSAGE'] = 'The field "Идентификатор" field is required';
+            $arFields['RESULT_MESSAGE'] = 'Значение поля Идентификатор не задано';
             return false;
         }
 
         if (!preg_match('/^[A-Za-zА-Яа-я]{4}-\d{4}$/u', $identifierValue)) {
-            $arFields['RESULT_MESSAGE'] = 'The field "Идентификатор" validation failed';
+            $arFields['RESULT_MESSAGE'] = 'Значение поля Идентификатор задано неверно';
             return false;
         }
 
