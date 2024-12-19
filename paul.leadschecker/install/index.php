@@ -45,6 +45,8 @@ class paul_leadschecker extends CModule
             ModuleManager::registerModule($this->MODULE_ID);
             $this->InstallEvents();
             $this->installLeadField();
+            $this->optionsSet();
+
         } else {
             $APPLICATION->ThrowException(
                 Loc::getMessage("PAUL_LEADCHECKER_SETTINGS_INSTALL_ERROR_VERSION")
@@ -59,6 +61,22 @@ class paul_leadschecker extends CModule
         return false;
     }
 
+    /**
+     * Method for set options
+     * @throws Exception
+     */
+    public function optionsSet(): void
+    {
+        $optionMapArray = [
+            'IDENTIFIER_USER_PROPERTY_LEAD_CODE' => self::LEAD_IDENTIFIER_FIELD_CODE,
+        ];
+
+        if (!empty($optionMapArray)) {
+            foreach ($optionMapArray as $key => $value) {
+                \COption::SetOptionString($this->MODULE_ID, $key, $value);
+            }
+        }
+    }
     /**
      * Method for uninstalling the module.
      * It unregisters the module and removes related events.
