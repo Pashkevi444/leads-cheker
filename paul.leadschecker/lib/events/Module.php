@@ -5,6 +5,7 @@ namespace Paul\Events;
 
 use Bitrix\Main\LoaderException;
 use Paul\OptionsData;
+use Paul\StaticData;
 
 final class Module
 {
@@ -47,12 +48,12 @@ final class Module
         $identifierValue = trim($arFields[$optionsData->identifierUserPropertyLeadCode]);
 
         if (!$identifierValue) {
-            $arFields['RESULT_MESSAGE'] = 'The field "Идентификатор" field is required';
+            $arFields['RESULT_MESSAGE'] = 'Значение поля '. StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_RU. ' не задано';
             return false;
         }
 
         if (!preg_match('/^[A-Za-zА-Яа-я]{4}-\d{4}$/u', $identifierValue)) {
-            $arFields['RESULT_MESSAGE'] = 'The field "Идентификатор" validation failed';
+            $arFields['RESULT_MESSAGE'] = 'Значение поля '. StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_RU. ' задано неверно';
             return false;
         }
 
