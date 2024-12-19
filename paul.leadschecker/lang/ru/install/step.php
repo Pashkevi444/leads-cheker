@@ -1,5 +1,5 @@
 <?php
 
-    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_BEFORE"]        = "Paul Module";
-    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_AFTER"]         = "Has been installed";
-    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_SUBMIT_BACK"] = "Back to list";
+    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_BEFORE"]        = "Paul leadschecker Модуль";
+    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_AFTER"]         = "Модуль установлен";
+    $MESS["PAUL_LEADCHECKER_SETTINGS_STEP_SUBMIT_BACK"] = "Вернуться к списку";
