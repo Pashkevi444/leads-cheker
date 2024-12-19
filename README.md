@@ -60,8 +60,10 @@
 И заменить следующие константы:
 
 ```php
-    public const string WEBHOOK_LEADS_URL = 'https://testb24:8890/rest/1/6jbm1vogmer9o1d4/crm.lead.list.json'; //ваш вебхук
-    public const string LOG_FILE_PATH = '/Users/pavelbalaganskij/projects/testb24/local/leads_count_log.txt'; //абсолютный путь где будет находиться файл логов
+//ваш вебхук
+    public const string WEBHOOK_LEADS_URL = 'https://testb24:8890/rest/1/6jbm1vogmer9o1d4/crm.lead.list.json';
+//абсолютный путь где будет находиться файл логов
+    public const string LOG_FILE_PATH = '/Users/pavelbalaganskij/projects/testb24/local/leads_count_log.txt'; 
 ```
 
 5. Теперь нужно Добавить запись в cron 
