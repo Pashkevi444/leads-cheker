@@ -4,5 +4,6 @@
     array(
         'Paul\\Events\\Module' => 'lib/events/Module.php',
         'Paul\\OptionsData' => 'lib/OptionsData.php',
+        'Paul\\StaticData' => 'lib/StaticData.php',
     )
 );

@@ -7,11 +7,10 @@ Loc::loadMessages(__FILE__);
 
 require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/classes/general/wizard.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/install/wizard_sol/utils.php");
-
+require_once($_SERVER["DOCUMENT_ROOT"] . "/local/modules/paul.leadschecker/lib/StaticData.php");
 class paul_leadschecker extends CModule
 {
     public $MODULE_ID = 'paul.leadschecker';
-    public const string LEAD_IDENTIFIER_FIELD_CODE = 'UF_IDENTIFIER';
 
     public function __construct()
     {
@@ -68,7 +67,7 @@ class paul_leadschecker extends CModule
     public function optionsSet(): void
     {
         $optionMapArray = [
-            'IDENTIFIER_USER_PROPERTY_LEAD_CODE' => self::LEAD_IDENTIFIER_FIELD_CODE,
+            'IDENTIFIER_USER_PROPERTY_LEAD_CODE' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_CODE,
         ];
 
         if (!empty($optionMapArray)) {
@@ -161,13 +160,13 @@ class paul_leadschecker extends CModule
             global $APPLICATION;
             $existingField = \CUserTypeEntity::GetList(
                 [],
-                ['ENTITY_ID' => 'CRM_LEAD', 'FIELD_NAME' => self::LEAD_IDENTIFIER_FIELD_CODE]
+                ['ENTITY_ID' => 'CRM_LEAD', 'FIELD_NAME' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_CODE]
             )->Fetch();
 
             if (!$existingField) {
                 $fields = [
                     'ENTITY_ID' => 'CRM_LEAD',
-                    'FIELD_NAME' => self::LEAD_IDENTIFIER_FIELD_CODE,
+                    'FIELD_NAME' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_CODE,
                     'USER_TYPE_ID' => 'string',
                     'XML_ID' => 'IDENTIFIER',
                     'SORT' => 100,
@@ -178,24 +177,24 @@ class paul_leadschecker extends CModule
                     'EDIT_IN_LIST' => 'Y',
                     'IS_SEARCHABLE' => 'Y',
                     'EDIT_FORM_LABEL' => [
-                        'en' => 'Identifier',
-                        'ru' => 'Идентификатор',
+                        'en' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_EN,
+                        'ru' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_RU,
                     ],
                     'LIST_COLUMN_LABEL' => [
-                        'en' => 'Identifier',
-                        'ru' => 'Идентификатор',
+                        'en' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_EN,
+                        'ru' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_RU,
                     ],
                     'LIST_FILTER_LABEL' => [
-                        'en' => 'Identifier',
-                        'ru' => 'Идентификатор',
+                        'en' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_EN,
+                        'ru' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_NAME_RU,
                     ],
                     'ERROR_MESSAGE' => [
-                        'en' => 'Incorrect identifier format',
-                        'ru' => 'Некорректный формат идентификатора',
+                        'en' => 'Incorrect format',
+                        'ru' => 'Некорректный формат',
                     ],
                     'HELP_MESSAGE' => [
-                        'en' => 'Enter the identifier in the format ABCD-1234',
-                        'ru' => 'Введите идентификатор в формате ABCD-1234',
+                        'en' => 'Enter the value in the format ABCD-1234',
+                        'ru' => 'Введите значение в формате ABCD-1234',
                     ],
                 ];
 
@@ -222,7 +221,7 @@ class paul_leadschecker extends CModule
             global $APPLICATION;
             $existingField = \CUserTypeEntity::GetList(
                 [],
-                ['ENTITY_ID' => 'CRM_LEAD', 'FIELD_NAME' => self::LEAD_IDENTIFIER_FIELD_CODE]
+                ['ENTITY_ID' => 'CRM_LEAD', 'FIELD_NAME' => \Paul\StaticData::LEAD_IDENTIFIER_PROPERTY_CODE]
             )->Fetch();
 
             if ($existingField) {

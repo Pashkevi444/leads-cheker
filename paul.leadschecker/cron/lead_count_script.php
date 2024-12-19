@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . '/../lib/StaticData.php';
 
-$webhookUrl = "https://testb24:8890/rest/1/6jbm1vogmer9o1d4/crm.lead.list.json";
-$logFile = '/Users/pavelbalaganskij/projects/testb24/local/leads_count_log.txt';
+$webhookUrl = \Paul\StaticData::WEBHOOK_LEADS_URL;
+$logFile = \Paul\StaticData::LOG_FILE_PATH;
 $filter = [];
 $select = ['ID'];
 $start = 0;
