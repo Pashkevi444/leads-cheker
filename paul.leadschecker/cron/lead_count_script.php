@@ -8,7 +8,8 @@ $start = 0;
 $limit = 50;
 
 
-function getLeadsCount($webhookUrl, $filter, $select, $start, $limit) {
+function getLeadsCount(string $webhookUrl, array $filter, array $select, int $start, int $limit): array
+{
     $allLeads = [];
 
     while (true) {
