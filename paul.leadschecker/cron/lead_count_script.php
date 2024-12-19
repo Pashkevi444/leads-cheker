@@ -7,6 +7,7 @@ $select = ['ID'];
 $start = 0;
 $limit = 50;
 
+
 function getLeadsCount($webhookUrl, $filter, $select, $start, $limit) {
     $allLeads = [];
 
@@ -25,8 +26,7 @@ function getLeadsCount($webhookUrl, $filter, $select, $start, $limit) {
         $response = curl_exec($ch);
 
         if (curl_errno($ch)) {
-            echo 'cURL Error: ' . curl_error($ch);
-            return false;
+            throw new Exception('cURL Error: ' . curl_error($ch));
         }
 
         curl_close($ch);
@@ -34,8 +34,7 @@ function getLeadsCount($webhookUrl, $filter, $select, $start, $limit) {
         $data = json_decode($response, true);
 
         if (isset($data['error'])) {
-            echo 'API Error: ' . $data['error_description'];
-            return false;
+            throw new Exception('API Error: ' . $data['error_description']);
         }
 
         $allLeads = array_merge($allLeads, $data['result']);
@@ -50,20 +49,17 @@ function getLeadsCount($webhookUrl, $filter, $select, $start, $limit) {
     return $allLeads;
 }
 
-$leads = getLeadsCount($webhookUrl, $filter, $select, $start, $limit);
+try {
+    $leads = getLeadsCount($webhookUrl, $filter, $select, $start, $limit);
 
-if ($leads !== false) {
     $leadCount = count($leads);
     $currentDateTime = date("Y-m-d H:i:s");
-
     $logMessage = "$currentDateTime - Total Leads: $leadCount\n";
     file_put_contents($logFile, $logMessage, FILE_APPEND);
 
-    echo "Log updated successfully: $logMessage";
-} else {
-    $errorMessage = date("Y-m-d H:i:s") . " - Error occurred while fetching leads.\n";
+} catch (Exception $e) {
+    $errorMessage = date("Y-m-d H:i:s") . " - Error: " . $e->getMessage() . "\n";
     file_put_contents($logFile, $errorMessage, FILE_APPEND);
-    echo "Error occurred while fetching leads.\n";
 }
 
 ?>
